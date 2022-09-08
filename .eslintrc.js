@@ -1,7 +1,5 @@
 module.exports = {
   extends: ["plugin:@typescript-eslint/recommended"],
-  // Parse the script in `.astro` as TypeScript by adding the following configuration.
-  // It's the setting you need when using TypeScript.
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "tsconfig.json",
@@ -14,18 +12,15 @@ module.exports = {
   },
   overrides: [
     {
-      // Define the configuration for `.astro` file.
       files: ["*.astro"],
       extends: ["plugin:astro/recommended"],
-      // Allows Astro components to be parsed.
       parser: "astro-eslint-parser",
-      // Parse the script in `.astro` as TypeScript by adding the following configuration.
-      // It's the setting you need when using TypeScript.
       parserOptions: {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
       },
     },
+    // Without following override `.astro` files do not lint at all and complain about not having `parserOptions.project` set
     {
       files: [
         ".eslintrc.js",
